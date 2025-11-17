@@ -1,0 +1,1 @@
+docker exec -it $(docker ps -a |grep lemma_extraction | awk '{print $1}') /bin/bash
