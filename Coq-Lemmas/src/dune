@@ -1,0 +1,10 @@
+(library
+ (name lemmas_plugin)
+ (public_name coq-lemmas.plugin)
+ (libraries coq-core.plugins.ltac coq-core.lib yojson))
+
+(coq.pp (modules g_lemmas))
+
+(env
+  (dev
+    (flags (:standard -w -32-27-3))))

@@ -1,0 +1,37 @@
+DECLARE PLUGIN "coq-lemmas.plugin"
+
+{
+
+open Ltac_plugin
+open Stdarg
+
+}
+
+
+
+VERNAC COMMAND EXTEND Searchlemmas CLASSIFIED AS QUERY
+| [ "Cmd" constr(e1)] ->
+  { 
+    let env = Global.env() in 
+    let sigma = Evd.from_env env in
+    let (sigma, t1) = Constrintern.interp_constr_evars env sigma e1 in
+    Some.show env sigma t1
+  }
+| ["Createdb"] -> {
+  let env = Global.env() in 
+  let sigma = Evd.from_env env in
+  let ll = Mysearch.alldef env sigma in 
+  let tl = List.map (fun x -> Mysearch.ref2constr env sigma x) ll in
+  Feedback.msg_debug (List.length tl |> Pp.int);
+  let _ = List.iter (fun (_, _, typ, modpath) -> Mysearch.show env sigma [] modpath typ) tl in
+  Mysearch.savejson env sigma;
+}
+END
+
+TACTIC EXTEND Proofreuse_proofre
+| [ "Tac1" ] ->
+  { Proofview.tclUNIT () }
+| ["getcontext"] -> 
+{ Some.getcontext () }
+
+END

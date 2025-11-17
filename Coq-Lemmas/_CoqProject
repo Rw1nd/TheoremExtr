@@ -1,0 +1,17 @@
+src/META.coq-lemmas
+-R theories Lemmas
+-I src
+-I /home/opam/.opam/lemmaextraction/lib/yojson
+
+
+theories/Loader.v
+theories/Demo.v
+
+src/llminfo.ml
+src/llminfo.mli
+src/some.ml
+src/some.mli
+src/mysearch.ml
+src/mysearch.mli
+src/g_lemmas.mlg
+src/lemmas_plugin.mlpack
