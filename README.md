@@ -1,5 +1,5 @@
-# The Artifact of _Extraction and Search in Rocq: Theorems, Definitions and Their dependencies_
-This repository is the artifact of our paper: Jian Fang, Yingfei Xiong, _Extraction and Search in Rocq: Theorems, Definitions and Their dependencies_.
+# TheoremExtr
+This repository is the artifact of our paper: Jian Fang, Yingfei Xiong, _Extraction and Search in Rocq: Theorems, Definitions and Their dependencies_. TheoremExtr is a extraction tool for Rocq projects. It can extract theorems, definitions, and their dependencies from Rocq projects.
 
 ## Artifact overview
 We provide our artifact as a Docker image.  We highly **recommend** using `docker` to set up the environment. The rest of this guide assumes that you are doing so. 
