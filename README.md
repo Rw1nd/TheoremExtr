@@ -9,11 +9,14 @@ This artifact demonstrates how to use our tool to extract theorems, definitions 
 ## Setting up docker
 Follow the [official website](https://docs.docker.com/engine/install/ubuntu/) to install `docker`. In this repository, the `Dockerfile` contains all the commands we use to build the environment. And the `build.sh` is the shell script to build the image and run a docker container. Use the following command:
 ```bash
+cd your/path/to/the/repo
+chmod a+x ./build.sh
 ./build.sh
 ```
 
 The `use.sh` is the shell script to execute an interactive `sh` shell on the container, now enter the container by running:
 ```bash
+chmod a+x ./use.sh
 ./use.sh
 ```
 Now, you successfully build the docker image.
@@ -22,10 +25,19 @@ Now, you successfully build the docker image.
 Because we will extract large number of theorems and definitions from projects, please make sure your machine has enough disk space (at least 20GB free space).
 
 ### Rocq Install
-Because we added extraction code in Rocq compiler, we need build and install the modified Rocq version. We need install the newest `opam` (version 2.4.1) and build Rocq:
+Because we added extraction code in Rocq compiler, we need build and install the modified Rocq version. We need install the newest `opam` (version 2.4.1):
 ```bash
 bash -c "sh <(curl -fsSL https://opam.ocaml.org/install.sh)"
 eval $(opam env --set-switch --switch=lemmaextraction)
+```
+
+This process has the following tips, We use the default configuration and just need to press Enter.
+```bash
+## Where should it be installed ? [/usr/bin]
+```
+
+Now we can build and install Rocq. Use the following commands:
+```bash
 cd /home/opam/data/
 tar zxvf rocq.tar.gz
 cd ./rocq
