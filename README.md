@@ -55,7 +55,7 @@ cd /home/opam/data/lemmasearch_proj
 python3 unzip_file.py
 ```
 
-Then we build and install all the projects to current ocaml environment. We have provided a `Makefile` to automate this process. Just run:
+Then we build and install all the projects to current ocaml environment. We have provided a `Makefile` to automate this process. By default, we use 16 cores for compilation. You can modify the `Makefile` if you want to use different number of cores.
 ```bash
 cd /home/opam/data/lemmasearch_proj
 make
