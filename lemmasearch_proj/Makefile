@@ -1,5 +1,5 @@
 
-PROJECTS_INSTALL = AAC_tactics menhir coq-elpi algebra-tactics math-comp-mathcomp mczify hierarchy-builder finmap bigenough analysis bignums compcert coq-equations coq-ext-lib coq-hott coq-simple-io coqeal real-closed coq-paramcoq multinomials coqprime coquelicot coqword coq-corn MathClasses coq-fcsl-pcm flocq coq-gappa coq-htt interval stdpp-coq-stdpp iris Cdcl LibHyps coq-unicoq mtac ott QuickChick reglang coq-relation-algebra vst coq-stdlib
+PROJECTS_INSTALL = AAC_tactics menhir coq-elpi algebra-tactics math-comp-mathcomp mczify hierarchy-builder finmap bigenough analysis bignums compcert coq-equations coq-ext-lib coq-hott coq-simple-io coqeal real-closed coq-paramcoq multinomials coqprime coquelicot coqword coq-corn MathClasses coq-fcsl-pcm flocq coq-gappa coq-htt interval stdpp-coq-stdpp iris Cdcl LibHyps coq-unicoq mtac ott QuickChick reglang coq-relation-algebra vst
 
 .DEFAULT_GOAL := all
 .PHONY : all 
