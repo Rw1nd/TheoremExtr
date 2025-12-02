@@ -1,42 +1,42 @@
 # TheoremExtr
-This repository is the artifact of our paper: Jian Fang, Yingfei Xiong, _Extraction and Search in Rocq: Theorems, Definitions and Their dependencies_. TheoremExtr is a extraction tool for Rocq projects. It can extract theorems, definitions, and their dependencies from Rocq projects.
+This repository is the artifact of our paper: Jian Fang, Yingfei Xiong, _Extraction and Search in Rocq: Theorems, Definitions and Their Dependencies_. TheoremExtr is an extraction tool for Rocq projects that extracts theorems, definitions, and their dependencies from Rocq codebases.
 
-## Artifact overview
-We provide our artifact as a Docker image.  We highly **recommend** using `docker` to set up the environment. The rest of this guide assumes that you are doing so. 
+## Artifact Overview
+We highly **recommend** using `docker` to configure the environment. The remainder of this guide assumes the use of Docker for environment setup.
 
-This artifact demonstrates how to use our tool to extract theorems, definitions and other information from Rocq projects.
+This artifact demonstrates the usage of our tool for extracting theorems, definitions, and related data from Rocq projects.
 
-## Setting up docker
-Follow the [official website](https://docs.docker.com/engine/install/ubuntu/) to install `docker`. In this repository, the `Dockerfile` contains all the commands we use to build the environment. And the `build.sh` is the shell script to build the image and run a docker container. Use the following command:
+## Setting Up Docker
+First, follow the [official documentation](https://docs.docker.com/engine/install/ubuntu/) to install `docker`. In this repository, the `Dockerfile` contains all commands required to build the environment. The `build.sh` script builds the Docker image and instantiates a container. Execute the following commands:
 ```bash
-cd your/path/to/the/repo
+cd your/path/to/the/TheoremExtr
 chmod a+x ./build.sh
 ./build.sh
 ```
 
-The `use.sh` is the shell script to execute an interactive `sh` shell on the container, now enter the container by running:
+The `use.sh` script executes an interactive `sh` shell within the container. Enter the container by executing:
 ```bash
 chmod a+x ./use.sh
 ./use.sh
 ```
-Now, you successfully build the docker image.
+This completes the Docker image build process.
 
-## Setting up environment
-Because we will extract large number of theorems and definitions from projects, please make sure your machine has enough disk space (at least 20GB free space).
+## Setting Up the Environment
+Due to the large number of theorems and definitions extracted from projects, ensure that your machine has sufficient disk space (at least 20GB of free space).
 
-### Rocq Install
-Because we added extraction code in Rocq compiler, we need build and install the modified Rocq version. We need install the newest `opam` (version 2.4.1):
+### Rocq Installation
+Since we have integrated extraction code into the Rocq compiler, it is necessary to build and install the modified Rocq version. First, install the latest version of `opam` (version 2.5.0):
 ```bash
 bash -c "sh <(curl -fsSL https://opam.ocaml.org/install.sh)"
 eval $(opam env --set-switch --switch=lemmaextraction)
 ```
 
-This process has the following tips, We use the default configuration and just need to press Enter.
+During this process, the following hint will appear. Use the default configuration by pressing Enter:
 ```bash
 ## Where should it be installed ? [/usr/bin]
 ```
 
-Now we can build and install Rocq. Use the following commands:
+Next, build and install Rocq using the following commands:
 ```bash
 cd /home/opam/data/
 tar zxvf rocq.tar.gz
@@ -44,34 +44,34 @@ cd ./rocq
 make dunestrap
 opam install -y .
 ```
-The precess may report error because of `coq-doc`. But this will not effect the using of `coqc`.
-After installation, we can use `opam list` to check whether coq has been installed.
+The process may report an error related to `coq-doc`; however, this will not affect the building of `coqc`. We can ignore this error.
+After installation, verify that Coq has been successfully installed by executing `opam list`.
 
-### Install Rocq Projects
-Now we need build and install all the project that are used for extraction. 
-The first step is unzip the projects:
+### Installing Rocq Projects
+The next step involves building and installing all projects required for extraction.
+First, extract the project archives:
 ```bash
 cd /home/opam/data/lemmasearch_proj
 python3 unzip_file.py
 ```
 
-Then we build and install all the projects to current ocaml environment. We have provided a `Makefile` to automate this process. By default, we use 16 cores for compilation. You can modify the `Makefile` if you want to use different number of cores.
+Then, build and install all projects into the current OCaml environment. We provide a `Makefile` to automate this process. By default, we use 16 cores to compile projects. The `Makefile` can be modified to adjust the number of cores according to your system configuration.
 ```bash
 cd /home/opam/data/lemmasearch_proj
 make
 ```
 
-This process may take a long time because there are many projects and some projects are large (e.g., CompCert). After this process, all the projects have been installed.
+This process may require substantial time. Upon completion, all projects will be successfully installed.
 
 ## Extracting Theorems
-`Coq-Lemmas` is the Rocq plugin that we implemented to extract theorems from runtimes. We need to install it to the ocaml environment. Use the following commands:
+`Coq-Lemmas` is the Rocq plugin we developed for theorem extraction at runtime. Install this plugin into the OCaml environment using the following commands:
 ```bash
 cd /home/opam/data/Coq-Lemmas
 make
 make install
 ```
 
-Now we can use our tool to extract theorems from Rocq projects. We have provided a python script `e.py` to automate this process. The script will extract theorems from all the projects in `lemmasearch_proj_extraction` directory. We need unzip the projects by using script `unzip_file.py` and then run the extraction script `e.py`:
+The tool can now be used to extract theorems from Rocq projects. We provide a Python script `e.py` to automate this process. This script extracts theorems from all projects in the `lemmasearch_proj_extraction` directory. First, extract the projects using the `unzip_file.py` script, then execute the extraction script `e.py`:
 ```bash
 cp /home/opam/data/rocq.tar.gz /home/opam/data/lemmasearch_proj_extraction/
 cd /home/opam/data/lemmasearch_proj_extraction/
