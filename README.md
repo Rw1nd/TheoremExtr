@@ -2,9 +2,14 @@
 This repository is the artifact of our paper: Jian Fang, Yingfei Xiong, _Extraction and Search in Rocq: Theorems, Definitions and Their Dependencies_. TheoremExtr is an extraction tool for Rocq projects that extracts theorems, definitions, and their dependencies from Rocq codebases.
 
 ## Artifact Overview
-We highly **recommend** using `docker` to configure the environment. The remainder of this guide assumes the use of Docker for environment setup.
-
 This artifact demonstrates the usage of our tool for extracting theorems, definitions, and related data from Rocq projects.
+
+We highly **recommend** using `docker` to configure the environment. The remainder of this guide assumes the use of Docker for environment setup. And this repository requires Git Large File Storage to ensure proper downloading of large files. Please ensure that [git-lfs](https://git-lfs.com/) is configured in your environment.
+
+```bash
+# Please ensure that git-lfs is installed.
+git clone https://github.com/Rw1nd/TheoremExtr.git
+```
 
 ## Setting Up Docker
 First, follow the [official documentation](https://docs.docker.com/engine/install/ubuntu/) to install `docker`. In this repository, the `Dockerfile` contains all commands required to build the environment. The `build.sh` script builds the Docker image and instantiates a container. Execute the following commands:
