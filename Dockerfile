@@ -12,8 +12,8 @@ RUN sudo apt-get update && sudo apt-get -y dist-upgrade && \
     sudo apt-get install -y build-essential  && \
     sudo apt-get install -y git-all  && \
     sudo apt-get install -y python3-pip
-
+    
 RUN sudo apt-get -y install libgtksourceview-3.0-dev
 RUN opam install -y dune ocamlfind zarith lablgtk3-sourceview3 yojson.2.2.2 
-RUN opam install -y ppx_optcomp odoc ocaml-lsp-server stdlib-shims elpi.2.0.7 ocamlgraph
+RUN opam install -y ppx_optcomp odoc ocaml-lsp-server stdlib-shims elpi.2.0.7 ocamlgraph menhir.20240715
 RUN opam repo add coq-released https://coq.inria.fr/opam/released
